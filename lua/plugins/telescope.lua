@@ -24,6 +24,26 @@ return {
 	config = function()
 		require("telescope").setup({
 			defaults = {
+				-- Small-screen layout tuning
+				layout_strategy = "vertical",
+				layout_config = {
+					vertical = {
+						width = 0.90,
+						height = 0.95,
+						preview_height = 0.35,
+						preview_cutoff = 20, -- hide preview on small windows
+					},
+					horizontal = {
+						width = 0.90,
+						height = 0.90,
+						preview_width = 0.45,
+						preview_cutoff = 60,
+					},
+				},
+
+				sorting_strategy = "ascending",
+				scroll_strategy = "cycle",
+
 				borderchars = {
 					"─", -- top
 					"│", -- right
