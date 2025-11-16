@@ -1,4 +1,2 @@
-require("config.neovide")
+vim.cmd [[colorscheme retrobox]]
 require("config.lazy")
-vim.cmd[[colorscheme catppuccin]]
-
