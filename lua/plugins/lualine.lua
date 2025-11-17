@@ -19,15 +19,15 @@ return {
         lualine_a = { "mode" },
         lualine_b = { "branch", "diff" },
         lualine_c = {
-          { "filename", path = 1 }, -- relative path
+          { "filename", path = 0 }, -- relative path
         },
         lualine_x = {
           "diagnostics",
           "encoding",
           "filetype",
         },
-        lualine_y = { "progress" },
-        lualine_z = { "location" },
+        lualine_y = {},
+        lualine_z = { "location", { padding = { right = 3, left = 0 } } },
       },
 
       inactive_sections = {

@@ -5,7 +5,7 @@ vim.opt.number = true      -- Line number
 vim.opt.scrolloff = 8      -- Keep 8 lines above or below the cursor
 vim.opt.sidescrolloff = 10 -- Keep 10 lines right or left of the cursor
 vim.opt.wrap = false       -- Turn off wrap
-vim.opt.cmdheight = 1      -- Command line height to 1
+vim.opt.cmdheight = 0      -- Command line height to 1
 vim.opt.spell = false      -- Turn off spell
 
 -- Tabbing / Indentation

@@ -9,7 +9,7 @@ return {
       vim.opt.background = "dark" -- or "light"
 
       -- Gruvbox Material configuration
-      vim.g.gruvbox_material_background = "soft" -- 'hard', 'medium', 'soft'
+      vim.g.gruvbox_material_background = "hard" -- 'hard', 'medium', 'soft'
       vim.g.gruvbox_material_foreground = "mix"  -- 'material', 'mix', 'original'
       vim.g.gruvbox_material_enable_italic = true
       vim.g.gruvbox_material_disable_italic_comment = false
@@ -43,5 +43,5 @@ return {
       vim.cmd [[hi Statusline guibg=NONE ]]
       vim.cmd.colorscheme("gruvbox-material")
     end,
-  },
+  }
 }
