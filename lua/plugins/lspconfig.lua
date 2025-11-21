@@ -33,8 +33,9 @@ return {
 			ensure_installed = {
 				"lua_ls",
 				"html",
-				"ts_ls",
-				"tailwindcss",
+				"cssls",
+				-- "ts_ls",
+				-- "tailwindcss",
 				"emmet_language_server",
 			},
 			automatic_enable = true,
