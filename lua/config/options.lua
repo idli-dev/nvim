@@ -25,7 +25,7 @@ vim.opt.hlsearch = false  -- Don't highlight on searching
 vim.opt.incsearch = true  -- Show search matches as you type!
 
 -- Visual settings
-vim.opt.winborder = "single"
+vim.opt.winborder = "solid"
 vim.opt.background = "dark"
 vim.opt.termguicolors = true  -- Enable 24-bit colors
 vim.opt.signcolumn = "yes"    -- Always show the signcolumn

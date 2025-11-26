@@ -23,5 +23,16 @@ require("lazy").setup({
   },
 
   install = { colorscheme = { "retrobox" } },
-  checker = { enabled = true, notify = false },
+  checker = {
+    enabled = false,
+  },
+  change_detection = {
+    enabled = false,
+    notify = false,     -- get a notification when changes are found
+  },
+  performance = {
+    cache = {
+      enabled = true,
+    },
+  },
 })
