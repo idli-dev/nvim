@@ -4,7 +4,7 @@
 local o = vim.opt
 
 -- Basic UI cleanup
-o.number = false
+o.number = true
 o.relativenumber = false
 o.signcolumn = "no"
 o.cursorline = false
@@ -18,6 +18,3 @@ o.winbar = ""
 -- Minimal highlight override
 vim.api.nvim_set_hl(0, "StatusLine", { link = "Normal" })
 vim.api.nvim_set_hl(0, "StatusLineNC", { link = "Normal" })
-
--- ftplugin/markdown.lua
-vim.opt_local.formatoptions:append({ "r", "n" })

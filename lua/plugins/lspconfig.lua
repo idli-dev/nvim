@@ -37,6 +37,7 @@ return {
         -- "ts_ls",
         -- "tailwindcss",
         "emmet_language_server",
+        "gopls"
       },
       automatic_enable = true,
     })
