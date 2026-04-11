@@ -1,0 +1,34 @@
+{
+  "$schema": "https://raw.githubusercontent.com/EmmyLuaLs/emmylua-analyzer-rust/refs/heads/main/crates/emmylua_code_analysis/resources/schema.json",
+  "runtime": {
+    "version": "LuaJIT",
+    "requirePattern": ["?.lua", "?/init.lua"]
+  },
+  "diagnostics": {
+    "disable": [
+      "missing-fields",
+      "missing-fields",
+      "return-type-mismatch",
+      "missing-fields"
+    ]
+  },
+  "workspace": {
+    "workspaceRoots": ["."],
+    "library": [
+      "${workspaceFolder}",
+      "${workspaceFolder}/lua",
+      "${workspaceFolder}/plugin",
+      "${workspaceFolder}/after",
+      "/usr/share/nvim/runtime",
+      "/usr/lib/nvim"
+    ],
+    "ignoreGlobs": ["**/node_modules/**", "**/.git/**", "**/lazy-lock.json"]
+  },
+  "completion": {
+    "autoRequire": true,
+    "callSnippet": false
+  },
+  "doc": {
+    "syntax": "md"
+  }
+}
