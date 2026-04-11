@@ -9,7 +9,7 @@ local map = vim.keymap.set
 -- LEADER KEYS
 g.mapleader = " "
 g.maplocalleader = " "
-
+g.live_server = { browser = false }
 g.loaded_python3_provider = 0
 g.loaded_ruby_provider = 0
 g.loaded_perl_provider = 0
@@ -39,6 +39,7 @@ opt.smartcase = true
 opt.inccommand = "split"
 opt.virtualedit = "block"
 opt.guicursor = "n-c-v:block-nCursor"
+opt.cmdheight = 1
 
 -- BEHAVIOR / PERFORMANCE
 opt.updatetime = 200
@@ -83,6 +84,15 @@ end
 -- KEYMAPS (GLOBAL)
 local map_opts = { silent = true }
 map("n", "-", "<cmd>Oil<cr>", vim.tbl_extend("force", map_opts, { desc = "Explorer" }))
+map("n", "<esc>", ":nohlsearch<cr>")
+
+-- Copy to system clipboard
+map({ "n", "v" }, "<leader>y", '"+y')
+map({ "n", "v" }, "<leader>p", '"+p')
+map({ "n", "v" }, "<leader>P", '"+P')
+
+map("n", "<leader>lt", "<Plug>(live-server-toggle)")
+
 map("n", "<leader>ff", "<cmd>FzfLua files<cr>", map_opts)
 map("n", "<leader>fg", "<cmd>FzfLua live_grep<cr>", map_opts)
 map("n", "<leader>fo", "<cmd>FzfLua oldfiles<cr>", map_opts)
@@ -100,12 +110,38 @@ vim.pack.add({
 	{ src = "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim" },
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
 	{ src = "https://github.com/ibhagwan/fzf-lua" },
+	{ src = "https://github.com/nvim-lualine/lualine.nvim" },
+	{ src = "https://github.com/barrettruth/live-server.nvim" },
+})
+
+require("lualine").setup({
+	options = {
+		theme = "auto",
+		icons_enabled = true,
+		component_separators = "",
+		section_separators = "",
+		globalstatus = true,
+	},
+	sections = {
+		lualine_a = { "mode" },
+		lualine_b = { "branch", "diff", "diagnostics" },
+		lualine_c = { "filename" },
+		lualine_x = { "lsp_status" },
+		lualine_y = { "filetype" },
+		lualine_z = { "location" },
+	},
+	inactive_sections = {
+		lualine_c = { "filename" },
+		lualine_x = { "location" },
+	},
 })
 
 -- MINI.NVIM
+require("mini.icons").mock_nvim_web_devicons()
 local mini_modules = {
 	"basics",
 	"icons",
+	"notify",
 	"pairs",
 	"ai",
 	"surround",
@@ -222,10 +258,12 @@ require("mason").setup()
 require("mason-lspconfig").setup({
 	ensure_installed = {
 		"emmylua_ls",
+		"pyrefly",
 		"jsonls",
 		"emmet_language_server",
 		"html",
 		"cssls",
+		"vtsls",
 	},
 })
 
@@ -234,6 +272,7 @@ require("mason-tool-installer").setup({
 		"stylua",
 		"prettierd",
 		"prettier",
+		"ruff",
 	},
 	run_on_start = true,
 })
@@ -242,6 +281,7 @@ require("mason-tool-installer").setup({
 require("conform").setup({
 	formatters_by_ft = {
 		lua = { "stylua" },
+		python = { "ruff_format" },
 		javascript = { "prettierd", "prettier" },
 		typescript = { "prettierd", "prettier" },
 		json = { "prettierd", "prettier" },
