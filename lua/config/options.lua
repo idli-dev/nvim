@@ -21,6 +21,9 @@ opt.cursorlineopt = "number"
 opt.signcolumn = "yes"
 opt.termguicolors = true
 opt.winblend = 0
+
+opt.winborder = "single"
+
 opt.pumblend = 0
 opt.scrolloff = 10
 opt.sidescrolloff = 10
