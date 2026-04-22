@@ -1,5 +1,7 @@
 require("config.theme")
 require("config.options")
+require("config.autocmds")
+require("config.keymaps")
 
 require("plugins.mini")
 require("plugins.oil")
