@@ -1,121 +1,89 @@
-local opt = vim.opt
+local o = vim.opt
 local g = vim.g
 
 g.mapleader = " "
 g.maplocalleader = " "
 
-opt.mouse = "a"
-opt.swapfile = false
-opt.backup = false
-opt.undofile = true
-opt.undodir = vim.fn.stdpath("data") .. "/undo"
-opt.updatetime = 200
-opt.timeoutlen = 300
-opt.completeopt = { "menu", "menuone", "noselect" }
+g.loaded_python3_provider = 0
+g.loaded_node_provider = 0
+g.loaded_perl_provider = 0
+g.loaded_ruby_provider = 0
 
--- UI
-opt.number = true
-opt.relativenumber = true
-opt.cursorline = true
-opt.cursorlineopt = "number"
-opt.signcolumn = "yes"
-opt.termguicolors = true
-opt.winblend = 0
+o.number = true
+o.relativenumber = false
+o.signcolumn = "yes:1"
 
-opt.winborder = "single"
+o.wrap = false
+o.linebreak = true
+o.breakindent = true
+o.sidescroll = 10
+o.sidescrolloff = 10
 
-opt.pumblend = 0
-opt.scrolloff = 10
-opt.sidescrolloff = 10
+o.expandtab = true
+o.tabstop = 2
+o.softtabstop = 2
+o.shiftwidth = 2
+o.shiftround = true
+o.smarttab = true
 
-opt.splitbelow = true
-opt.splitright = true
+o.autoindent = true
+o.smartindent = true
+o.copyindent = true
+o.preserveindent = true
 
-opt.laststatus = 3
-opt.showmode = false
+o.ignorecase = true
+o.smartcase = true
+o.incsearch = true
+o.hlsearch = true
+o.inccommand = "split"
+o.virtualedit = "block"
 
--- Tabs & Indentation
-opt.expandtab = true
-opt.shiftwidth = 2
-opt.tabstop = 2
-opt.softtabstop = 2
-opt.smartindent = true
-opt.breakindent = true
+o.winborder = "single"
 
--- Wrapping
-opt.wrap = false
-opt.linebreak = true
+o.scrolloff = 8
+o.cursorline = true
+o.cursorlineopt = "number"
 
--- Search
-opt.ignorecase = true
-opt.smartcase = true
-opt.hlsearch = true
-opt.incsearch = true
+o.splitbelow = true
+o.splitright = true
+o.splitkeep = "screen"
 
--- Files & Encoding
-opt.fileencoding = "utf-8"
-opt.encoding = "utf-8"
-opt.autoread = true
+o.undofile = true
+o.undolevels = 10000
+o.backup = false
+o.swapfile = false
+o.writebackup = false
 
--- Completion & Cmdline
-opt.wildmode = { "longest", "list", "full" }
-opt.wildignore:append({
-  "*.o", "*.obj", "*.bin",
-  "*.jpg", "*.png", "*.gif",
-  "*.zip", "*.tar.gz",
-  "node_modules/*",
-})
-vim.opt.iskeyword:append("-")
+local undodir = vim.fn.stdpath("state") .. "/undo"
+if vim.fn.isdirectory(undodir) == 0 then
+  vim.fn.mkdir(undodir, "p")
+end
+o.undodir = undodir
 
--- Performance
-opt.lazyredraw = true
-opt.synmaxcol = 300
+o.showmode = false
+o.laststatus = 3
+o.cmdheight = 1
+o.ruler = false
+o.showcmd = true
 
--- Folding (Treesitter / expr-based)
-opt.foldmethod = "expr"
-opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-opt.foldlevel = 99
+o.completeopt = { "menu", "menuone", "noselect", "popup", "fuzzy" }
+o.pumheight = 10
 
--- Diagnostics (built-in LSP UX)
-vim.diagnostic.config({
-  virtual_text = true,
-  underline = true,
-  update_in_insert = false,
-  severity_sort = true,
-  float = {
-    border = "single",
-    source = "if_many",
-  },
-})
+o.mouse = "a"
+o.confirm = true
+o.hidden = true
+o.autoread = true
 
--- Neovim 0.10+ / 0.12 niceties
-opt.shortmess:append("c")
-opt.fillchars = {
-  eob = " ",
-}
+o.backspace = { "indent", "eol", "start" }
+o.whichwrap:append("<,>,[,],h,l")
+o.iskeyword:append("-")
 
--- Optional: disable some built-ins for startup speed
-local disabled_builtins = {
-  "gzip",
-  "zip",
-  "zipPlugin",
-  "tar",
-  "tarPlugin",
-  "getscript",
-  "getscriptPlugin",
-  "vimball",
-  "vimballPlugin",
-  "matchit",
-  "matchparen",
-  "2html_plugin",
-  "logipat",
-  "rrhelper",
-  "netrw",
-  "netrwPlugin",
-  "netrwSettings",
-  "netrwFileHandlers",
-}
+o.timeoutlen = 300
+o.updatetime = 200
+o.lazyredraw = true
+o.synmaxcol = 300
 
-for _, plugin in ipairs(disabled_builtins) do
-  g["loaded_" .. plugin] = 1
+if vim.fn.executable("rg") == 1 then
+  o.grepprg = "rg --vimgrep --smart-case --hidden"
+  o.grepformat = "%f:%l:%c:%m"
 end
