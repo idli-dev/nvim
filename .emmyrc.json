@@ -4,24 +4,9 @@
     "version": "LuaJIT",
     "requirePattern": ["?.lua", "?/init.lua"]
   },
-  "diagnostics": {
-    "disable": [
-      "missing-fields",
-      "missing-fields",
-      "return-type-mismatch",
-      "missing-fields"
-    ]
-  },
   "workspace": {
     "workspaceRoots": ["."],
-    "library": [
-      "${workspaceFolder}",
-      "${workspaceFolder}/lua",
-      "${workspaceFolder}/plugin",
-      "${workspaceFolder}/after",
-      "/usr/share/nvim/runtime",
-      "/usr/lib/nvim"
-    ],
+    "library": ["$VIMRUNTIME"],
     "ignoreGlobs": ["**/node_modules/**", "**/.git/**", "**/lazy-lock.json"]
   },
   "completion": {
